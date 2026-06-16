@@ -1,10 +1,25 @@
 const CACHE_NAME = 'checkin-wall-v1';
+
+function getBasePath() {
+  const scope = self.registration ? self.registration.scope : self.location.origin + '/';
+  const base = new URL('.', scope).pathname;
+  return base.endsWith('/') ? base : base + '/';
+}
+
+function asset(path) {
+  const base = getBasePath();
+  if (path.startsWith('/')) {
+    return base + path.slice(1);
+  }
+  return base + path;
+}
+
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/favicon.svg',
-  '/rest-cat.png'
+  asset(''),
+  asset('index.html'),
+  asset('manifest.json'),
+  asset('favicon.svg'),
+  asset('rest-cat.png')
 ];
 
 // Install: cache static assets
@@ -64,7 +79,7 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => {
         // Offline fallback for navigation requests
         if (request.mode === 'navigate') {
-          return caches.match('/');
+          return caches.match(STATIC_ASSETS[0]);
         }
         return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
       });
