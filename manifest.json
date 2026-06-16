@@ -1,0 +1,22 @@
+{
+  "name": "@子为的打卡墙",
+  "short_name": "打卡墙",
+  "description": "波普艺术风格的学习打卡互动社区",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF8E7",
+  "theme_color": "#111111",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle", "social"],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}
